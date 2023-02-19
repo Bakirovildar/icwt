@@ -5,6 +5,12 @@ export const FooterWrapper = styled.div`
   height: 40px;
 `
 
+export const DeleteWrapper = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+`
+
 export const Button = styled.button`
   width: 120px;
   height: 30px;

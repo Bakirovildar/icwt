@@ -59,6 +59,22 @@ export const deleteFavoriteJokeAction: ActionCreator<DeleteFavoriteJokeAction> =
     data,
 })
 
+export const DELETE_JOKE = 'DELETE_JOKE'
+
+export interface IDeleteJoke {
+    title: any,
+}
+
+export type DeleteJokeAction = {
+    type: typeof DELETE_JOKE
+    title: IDeleteJoke
+}
+
+export const deleteJokeAction: ActionCreator<DeleteJokeAction> = (title: IDeleteJoke) => ({
+    type: DELETE_JOKE,
+    title,
+})
+
 
 export const CLEAR_FAVORITES = 'CLEAR_FAVORITES'
 
