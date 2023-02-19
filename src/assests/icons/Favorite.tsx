@@ -7,10 +7,17 @@ export const FavoriteIcon = ({joke}: IFavoriteIcon) => {
     const [isActive, setIsActive] = useReducer(isActive => !isActive, false)
     const [preJoke, setPreJoke] = useState({})
     const dispatch = useDispatch()
+    const [favoritesStorage, setFavoritesStorage]: any = useState([])
 
     useEffect(() => {
         setPreJoke(() => joke)
     }, [])
+
+    useEffect(() => {
+        if (!favoritesStorage.length && joke) {
+            setFavoritesStorage([...favoritesStorage, joke])
+        }
+    }, [joke])
 
     useEffect(() => {
         if(joke !== preJoke) {
@@ -22,7 +29,11 @@ export const FavoriteIcon = ({joke}: IFavoriteIcon) => {
     const clickFavorite = () => {
         setIsActive()
         if (isActive) dispatch(deleteFavoriteJokeAction(joke))
-        else dispatch(saveFavoriteJokeAction(joke))
+        else {
+            setFavoritesStorage([...favoritesStorage, joke])
+            localStorage.setItem('favorites', JSON.stringify(favoritesStorage))
+            return dispatch(saveFavoriteJokeAction(joke))
+        }
     }
 
     return (

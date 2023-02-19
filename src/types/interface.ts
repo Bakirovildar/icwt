@@ -4,5 +4,5 @@ export interface IButtonNav {
 }
 
 export interface IFavoriteIcon {
-    joke?: string
+    joke?: any
 }
