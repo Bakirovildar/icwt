@@ -5,6 +5,10 @@ export const DeleteIcon = ({title}: any) => {
     const dispatch = useDispatch()
 
     const deleteFavoriteHandler = () => {
+        const local = JSON.parse(localStorage.getItem('favorites') as string)
+        const filter = local.filter((item: any) => item.value !== title)
+        localStorage.setItem('favorites', JSON.stringify(filter))
+
         dispatch(deleteJokeAction(title))
     }
 

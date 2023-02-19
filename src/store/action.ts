@@ -75,6 +75,22 @@ export const deleteJokeAction: ActionCreator<DeleteJokeAction> = (title: IDelete
     title,
 })
 
+export const SAVE_STORAGE = 'SAVE_STORAGE'
+
+export interface ISaveStorage {
+    title: any,
+}
+
+export type SaveStorage = {
+    type: typeof SAVE_STORAGE
+    data: ISaveStorage
+}
+
+export const saveStorage: ActionCreator<SaveStorage> = (data: ISaveStorage) => ({
+    type: SAVE_STORAGE,
+    data,
+})
+
 
 export const CLEAR_FAVORITES = 'CLEAR_FAVORITES'
 

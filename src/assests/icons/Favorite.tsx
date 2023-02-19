@@ -28,7 +28,9 @@ export const FavoriteIcon = ({joke}: IFavoriteIcon) => {
 
     const clickFavorite = () => {
         setIsActive()
-        if (isActive) dispatch(deleteFavoriteJokeAction(joke))
+        if (isActive) {
+            dispatch(deleteFavoriteJokeAction(joke))
+        }
         else {
             setFavoritesStorage([...favoritesStorage, joke])
             localStorage.setItem('favorites', JSON.stringify(favoritesStorage))
