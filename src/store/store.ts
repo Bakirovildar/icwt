@@ -1,14 +1,5 @@
 import {Reducer} from "redux";
-import {
-    AddStorageAction,
-    ClearFavorites,
-    DeleteFavoriteJokeAction,
-    DeleteJokeAction,
-    FavoriteJokeAction,
-    SaveJokeAction
-} from "./action";
-import {json} from "stream/consumers";
-import {useDispatch} from "react-redux";
+import {ClearFavorites, DeleteFavoriteJokeAction, DeleteJokeAction, FavoriteJokeAction, SaveJokeAction} from "./action";
 
 export type RootState = {
     jokes: any,
@@ -20,7 +11,7 @@ const initialState: RootState = {
     favorites: []
 }
 
-type MyAction = SaveJokeAction | FavoriteJokeAction | DeleteFavoriteJokeAction | ClearFavorites | DeleteJokeAction | AddStorageAction
+type MyAction = SaveJokeAction | FavoriteJokeAction | DeleteFavoriteJokeAction | ClearFavorites | DeleteJokeAction
 
 export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, action) => {
     switch (action.type) {
@@ -32,7 +23,7 @@ export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, 
         case "FAVORITE_JOKE":
             return {
                 ...state,
-                favorites:  state.favorites.length < 10
+                favorites: state.favorites.length < 10
                     ? [...state.favorites, action.data]
                     : state.favorites.map((favorite: object, idx: number) => {
                         if (idx === 0) {
@@ -51,11 +42,6 @@ export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, 
             return {
                 ...state,
                 favorites: state.favorites = []
-            }
-        case "ADD_FAVORITE_STORAGE":
-            return {
-                ...state,
-                favorites: action.array
             }
         case "DELETE_JOKE":
             return {

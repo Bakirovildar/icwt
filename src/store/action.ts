@@ -75,22 +75,6 @@ export const deleteJokeAction: ActionCreator<DeleteJokeAction> = (title: IDelete
     title,
 })
 
-export const ADD_FAVORITE_STORAGE = 'ADD_FAVORITE_STORAGE'
-
-export interface IAddStorage {
-    array: any,
-}
-
-export type AddStorageAction = {
-    type: typeof ADD_FAVORITE_STORAGE
-    array: IAddStorage
-}
-
-export const addStorageAction: ActionCreator<AddStorageAction> = (array: IAddStorage) => ({
-    type: ADD_FAVORITE_STORAGE,
-    array,
-})
-
 
 export const CLEAR_FAVORITES = 'CLEAR_FAVORITES'
 

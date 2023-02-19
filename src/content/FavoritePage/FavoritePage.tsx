@@ -1,12 +1,13 @@
 import React from 'react';
 import {ButtonClear, HomeWrapper} from './styledFavoritePage';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../store/store";
 import CardMain from "../../components/CardComponent/CardMain/CardMain";
 import {CardWrapper} from '../../components/CardComponent/styledCardComponent';
 import {clearFavorites} from "../../store/action";
 
 function FavoritePage() {
-    const [...jokeFavorites]: any = JSON.parse(localStorage.getItem('favorites') as string)
+    const [...jokeFavorites]: any = useSelector<RootState>(state => state.favorites)
     const dispatch = useDispatch()
 
     const clearFavoritesHandler = () => {
