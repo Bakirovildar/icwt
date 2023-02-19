@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import Header from "./content/Header/Header";
 import Layout from "./content/Layout/Layout";
 import {useNavigation} from "./general/hooks/useNavigate";
-import {getJoke} from "./store/action";
+import {addStorageAction, getJoke} from "./store/action";
 
 function App() {
     useNavigation()
@@ -12,6 +12,7 @@ function App() {
 
     useEffect(() => {
         dispatch(getJoke())
+        dispatch(addStorageAction(JSON.parse(localStorage.getItem('favorites') as string)))
     }, [])
 
     return (

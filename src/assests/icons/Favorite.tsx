@@ -1,11 +1,13 @@
-import {useEffect, useReducer, useState} from "react";
+import {useEffect, useMemo, useReducer, useState} from "react";
 import {IFavoriteIcon} from "../../types/interface";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {deleteFavoriteJokeAction, saveFavoriteJokeAction} from "../../store/action";
+import {RootState} from "../../store/store";
 
 export const FavoriteIcon = ({joke}: IFavoriteIcon) => {
     const [isActive, setIsActive] = useReducer(isActive => !isActive, false)
     const [preJoke, setPreJoke] = useState({})
+    const favorites: any = useSelector<RootState>(state => state.favorites)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -13,16 +15,25 @@ export const FavoriteIcon = ({joke}: IFavoriteIcon) => {
     }, [])
 
     useEffect(() => {
-        if(joke !== preJoke) {
+        if (joke !== preJoke) {
             setIsActive()
             setPreJoke(() => joke)
         }
     }, [joke])
 
+    useEffect(() => {
+        if (!favorites.length) return
+        localStorage.setItem('favorites', JSON.stringify(favorites))
+    }, [favorites])
+
+
     const clickFavorite = () => {
         setIsActive()
-        if (isActive) dispatch(deleteFavoriteJokeAction(joke))
-        else dispatch(saveFavoriteJokeAction(joke))
+        if (isActive) {
+            dispatch(deleteFavoriteJokeAction(joke))
+        } else {
+            dispatch(saveFavoriteJokeAction(joke))
+        }
     }
 
     return (
