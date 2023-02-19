@@ -1,5 +1,5 @@
 import {Reducer} from "redux";
-import {FavoriteJokeAction, SaveJokeAction} from "./action";
+import {DeleteFavoriteJokeAction, FavoriteJokeAction, SaveJokeAction} from "./action";
 
 export type RootState = {
     jokes: any,
@@ -11,7 +11,7 @@ const initialState: RootState = {
     favorites: []
 }
 
-type MyAction = SaveJokeAction | FavoriteJokeAction
+type MyAction = SaveJokeAction | FavoriteJokeAction | DeleteFavoriteJokeAction
 
 export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, action) => {
     switch (action.type) {
@@ -32,6 +32,11 @@ export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, 
                         }
                         return favorite
                     })
+            }
+        case "DELETE_FAVORITE_JOKE":
+            return {
+                ...state,
+                favorites: state.favorites.filter((item: object) => state.favorites.includes((i: object) => i !== item))
             }
         default:
             return state

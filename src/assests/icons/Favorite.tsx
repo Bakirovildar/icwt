@@ -1,21 +1,33 @@
-import {useEffect, useReducer} from "react";
+import {useEffect, useReducer, useState} from "react";
 import {IFavoriteIcon} from "../../types/interface";
 import {useDispatch} from "react-redux";
-import {saveFavoriteJokeAction} from "../../store/action";
+import {deleteFavoriteJokeAction, saveFavoriteJokeAction} from "../../store/action";
 
 export const FavoriteIcon = ({joke}: IFavoriteIcon) => {
     const [isActive, setIsActive] = useReducer(isActive => !isActive, false)
+    const [preJoke, setPreJoke] = useState({})
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if(!isActive && !joke) return
+        setPreJoke(() => joke)
+    }, [])
 
-        dispatch(saveFavoriteJokeAction(joke))
-    }, [isActive])
+    useEffect(() => {
+        if(joke !== preJoke) {
+            setIsActive()
+            setPreJoke(() => joke)
+        }
+    }, [joke])
+
+    const clickFavorite = () => {
+        setIsActive()
+        if (isActive) dispatch(deleteFavoriteJokeAction(joke))
+        else dispatch(saveFavoriteJokeAction(joke))
+    }
 
     return (
         <svg
-            onClick={() => setIsActive()}
+            onClick={clickFavorite}
             xmlns="http://www.w3.org/2000/svg"
             width="30px"
             height="30px"

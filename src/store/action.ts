@@ -43,6 +43,22 @@ export const saveFavoriteJokeAction: ActionCreator<FavoriteJokeAction> = (data: 
     data,
 })
 
+export const DELETE_FAVORITE_JOKE = 'DELETE_FAVORITE_JOKE'
+
+export interface IDeleteFavoriteJoke {
+    joke: any,
+}
+
+export type DeleteFavoriteJokeAction = {
+    type: typeof DELETE_FAVORITE_JOKE
+    data: IDeleteFavoriteJoke
+}
+
+export const deleteFavoriteJokeAction: ActionCreator<DeleteFavoriteJokeAction> = (data: IDeleteFavoriteJoke) => ({
+    type: DELETE_FAVORITE_JOKE,
+    data,
+})
+
 
 export const getJoke = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState) => {
     fetch('https://api.chucknorris.io/jokes/random')
