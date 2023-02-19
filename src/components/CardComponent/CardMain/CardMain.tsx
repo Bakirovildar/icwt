@@ -14,7 +14,7 @@ function CardMain() {
     return (
         <MainWrapper>
             <IconFavorite>
-                <FavoriteIcon/>
+                <FavoriteIcon joke={jokes}/>
             </IconFavorite>
             <TitleStyle>{jokes ? jokes.value : '' }</TitleStyle>
         </MainWrapper>

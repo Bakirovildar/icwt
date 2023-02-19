@@ -13,7 +13,6 @@ export interface IJoke {
     ]
 }
 
-
 export type SaveJokeAction = {
     type: typeof SAVE_JOKE
     data: IJoke
@@ -21,6 +20,26 @@ export type SaveJokeAction = {
 
 export const saveJokeAction: ActionCreator<SaveJokeAction> = (data: IJoke) => ({
     type: SAVE_JOKE,
+    data,
+})
+export const FAVORITE_JOKE = 'FAVORITE_JOKE'
+
+export interface IFavoriteJoke {
+    data: [
+        {
+            id: string,
+            value: string
+        }
+    ]
+}
+
+export type FavoriteJokeAction = {
+    type: typeof FAVORITE_JOKE
+    data: IFavoriteJoke
+}
+
+export const saveFavoriteJokeAction: ActionCreator<FavoriteJokeAction> = (data: IFavoriteJoke) => ({
+    type: FAVORITE_JOKE,
     data,
 })
 

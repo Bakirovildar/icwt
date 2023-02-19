@@ -1,7 +1,17 @@
-import {useReducer} from "react";
+import {useEffect, useReducer} from "react";
+import {IFavoriteIcon} from "../../types/interface";
+import {useDispatch} from "react-redux";
+import {saveFavoriteJokeAction} from "../../store/action";
 
-export const FavoriteIcon = () => {
+export const FavoriteIcon = ({joke}: IFavoriteIcon) => {
     const [isActive, setIsActive] = useReducer(isActive => !isActive, false)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if(!isActive && !joke) return
+
+        dispatch(saveFavoriteJokeAction(joke))
+    }, [isActive])
 
     return (
         <svg

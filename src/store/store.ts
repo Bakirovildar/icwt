@@ -1,15 +1,17 @@
-import {ActionCreator, Reducer} from "redux";
-import {IJoke, SaveJokeAction} from "./action";
+import {Reducer} from "redux";
+import {FavoriteJokeAction, SaveJokeAction} from "./action";
 
 export type RootState = {
-    jokes: any
+    jokes: any,
+    favorites: any
 }
 
 const initialState: RootState = {
-    jokes: []
+    jokes: [],
+    favorites: []
 }
 
-type MyAction = SaveJokeAction
+type MyAction = SaveJokeAction | FavoriteJokeAction
 
 export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, action) => {
     switch (action.type) {
@@ -17,6 +19,19 @@ export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, 
             return {
                 ...state,
                 jokes: action.data
+            }
+        case "FAVORITE_JOKE":
+            return {
+                ...state,
+                favorites: state.favorites.length < 10
+                    ? [...state.favorites, action.data]
+                    : state.favorites.map((favorite: object, idx: number) => {
+                        if (idx === 0) {
+                            state.favorites.splice(0, 1)
+                            return state.favorites.push(action.data)
+                        }
+                        return favorite
+                    })
             }
         default:
             return state
