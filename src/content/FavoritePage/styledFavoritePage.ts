@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const HomeWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  padding-top: 100px;
+  height: 500px;
   background: rgba(241, 247, 252, 0.51);
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   position: relative;
 `

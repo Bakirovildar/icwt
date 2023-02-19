@@ -1,10 +1,10 @@
 import React from 'react';
 import { CardContainer } from './styledFavoriteCard';
 
-function FavoriteCard() {
+function FavoriteCard({title}: any) {
     return (
         <CardContainer>
-            assssssssssdwwwwwwwwwwww aldwlwla lawdlawdlaw lawdlawldawld lawldalwdlw
+            {title}
         </CardContainer>
     );
 }

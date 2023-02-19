@@ -60,6 +60,17 @@ export const deleteFavoriteJokeAction: ActionCreator<DeleteFavoriteJokeAction> =
 })
 
 
+export const CLEAR_FAVORITES = 'CLEAR_FAVORITES'
+
+export type ClearFavorites = {
+    type: typeof CLEAR_FAVORITES
+}
+
+export const clearFavorites: ActionCreator<ClearFavorites> = () => ({
+    type: CLEAR_FAVORITES
+})
+
+
 export const getJoke = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState) => {
     fetch('https://api.chucknorris.io/jokes/random')
         .then(res => res.json())
