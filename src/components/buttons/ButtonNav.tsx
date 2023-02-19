@@ -1,12 +1,15 @@
 import React from 'react';
 import {IButtonNav} from "../../types/interface";
-import { ButtonWrapper } from './styledButtons';
+import {ButtonWrapper} from './styledButtons';
+import {Link} from "react-router-dom";
 
-function ButtonNav({title}: IButtonNav) {
+function ButtonNav({title, path}: IButtonNav) {
     return (
-        <ButtonWrapper>
-            {title}
-        </ButtonWrapper>
+        <Link to={path}>
+            <ButtonWrapper>
+                {title}
+            </ButtonWrapper>
+        </Link>
     );
 }
 

@@ -11,14 +11,17 @@ const HeaderWrapper = styled.header`
   padding: 0 100px;
   height: 60px;
   background: #24292F;
+  a {
+    text-decoration: none;
+  }
 `
 
 
 function Header() {
     return (
         <HeaderWrapper>
-            <ButtonNav title={'Шутки'}/>
-            <ButtonNav title={'Избранные'}/>
+            <ButtonNav title={'Шутки'} path={'/home'}/>
+            <ButtonNav title={'Избранные'} path={'/favorite'}/>
         </HeaderWrapper>
     );
 }
