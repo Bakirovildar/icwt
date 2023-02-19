@@ -1,25 +1,22 @@
-import React from 'react';
-import styled from "styled-components";
+import React, {useEffect} from 'react';
 import {FavoriteIcon} from "../../../assests/icons/Favorite";
-
-const MainWrapper = styled.div`
-  width: 100%;
-  height: 260px;
-  position: relative;
-`
-
-const IconFavorite = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-`
+import {IconFavorite, MainWrapper, TitleStyle} from '../styledCardComponent';
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store/store";
 
 function CardMain() {
+    const [jokes]: any = useSelector<RootState>(state => state.jokes)
+
+    useEffect(() => {
+        if(!jokes) return
+    }, [jokes])
+
     return (
         <MainWrapper>
             <IconFavorite>
                 <FavoriteIcon/>
             </IconFavorite>
+            <TitleStyle>{jokes ? jokes.value : '' }</TitleStyle>
         </MainWrapper>
     );
 }

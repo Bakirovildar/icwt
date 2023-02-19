@@ -2,18 +2,11 @@ import {ActionCreator, Reducer} from "redux";
 import {IJoke, SaveJokeAction} from "./action";
 
 export type RootState = {
-    jokes: IJoke
+    jokes: any
 }
 
 const initialState: RootState = {
-    jokes: {
-        data: [
-            {
-                id: '',
-                value: ''
-            }
-        ]
-    }
+    jokes: []
 }
 
 type MyAction = SaveJokeAction
